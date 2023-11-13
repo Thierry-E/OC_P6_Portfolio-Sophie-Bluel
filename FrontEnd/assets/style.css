@@ -137,6 +137,19 @@ li:hover {
 	width: 100%;
 
 }
+
+.filters .btnFilters{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+
+
 #contact {
 	width: 50%;
 margin: auto;
