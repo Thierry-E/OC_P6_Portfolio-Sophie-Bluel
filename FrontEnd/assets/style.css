@@ -138,15 +138,29 @@ li:hover {
 
 }
 
+.filters{
+	display: flex;
+	justify-content: center;
+	margin: 30px;
+}
+
 .filters .btnFilters{
 	font-family: 'Syne';
 	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
+	color: #1D6154;
+	background-color: #ffffff;
+	margin : 2em 0.625em ;
 	width: 180px;
+	height: 37px ;
 	text-align: center;
+	border: 2px solid #1D6154;
 	border-radius: 60px ;
+	cursor: pointer;
+}
+
+.filters .btnFilters:hover{
+	color: #ffffff;
+	background-color: #1D6154;
 }
 
 

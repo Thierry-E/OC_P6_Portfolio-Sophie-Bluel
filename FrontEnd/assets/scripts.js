@@ -17,7 +17,7 @@ const filters = document.querySelector(".filters");
 
 /******Les Fonctions******/
 
-// Récupération des projets depuis l'API
+// Récupération des projets depuis l'API et affichage de ces derniers sans filtrage.
 async function projectsRecovery() {
   const url = "http://localhost:5678/api/works";
   fetch(url)
@@ -33,9 +33,9 @@ async function projectsRecovery() {
         imageElement.src = projects.imageUrl;
         const captionElement = document.createElement("figcaption");
         captionElement.innerText = projects.title;
-        //Rattachement de la balise figure à la div gallery
+        //Rattachement de la balise "figure" à la div "gallery".
         gallery.appendChild(figureElement);
-        // Rattachement des balises imd et figcaption à l'élément figure
+        // Rattachement des balises "img" et "figcaption" à l'élément "figure".
         figureElement.appendChild(imageElement);
         figureElement.appendChild(captionElement);
       });
@@ -67,38 +67,49 @@ async function getWorks() {
   return requete.json();
 }
 
+//Fonction qui crée les projets de façon individuels en fonction de la catégorie.
 function createWork(work) {
   //Récupératiuon de l'élément du DOM qui contiendra les projets
   const gallery = document.querySelector(".gallery");
   //Création d'une balise dédié à un projet
   const figureElement = document.createElement("figure");
   // const projects = data[i]; //Permet de récupérer les projets un a un
-  // // Création des balises
+  // Création des balises
   const imageElement = document.createElement("img");
   imageElement.src = work.imageUrl;
   const captionElement = document.createElement("figcaption");
   captionElement.innerText = work.title;
-  // Rattachement des balises imd et figcaption à l'élément figure
+  // Rattachement des balises "img" et "figcaption" à l'élément "figure".
   figureElement.appendChild(imageElement);
   figureElement.appendChild(captionElement);
-  //Rattachement de la balise figure à la div gallery
+  //Rattachement de la balise figure à la div "gallery".
   gallery.appendChild(figureElement);
 }
 
-/****** Ajout d'un gestionnaire d'événements au clic sur le bouton******/
+/****** Gestionnaires d'événements******/
+// Mise en place du filtrage des projets via les boutons.
 filters.addEventListener("click", function (event) {
   const idValue = event.target.id;
-  gallery.innerHTML = "";
-  getWorks().then((works) => {
-    works.forEach((work) => {
-      if (idValue == work.categoryId) {
-        createWork(work);
-        console.log(work);
-        console.log("value");
-      }
+
+  // Vérification si le bouton "Tous" est cliqué.
+  if (idValue === "all") {
+    // Affichage de tous les projets.
+    gallery.innerHTML = "";
+    projectsRecovery();
+  } else {
+    //affichage des projets en fonction de la catégorie sélectionnée.
+    gallery.innerHTML = "";
+    getWorks().then((works) => {
+      works.forEach((work) => {
+        if (idValue == work.categoryId) {
+          createWork(work);
+        }
+      });
     });
-  });
+  }
 });
+
+//Réinitiamisation de la gallerie via le bouton Tous.
 
 /******Appel des Fonctions******/
 projectsRecovery();
