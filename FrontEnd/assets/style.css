@@ -22,6 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	text-decoration: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -82,7 +83,7 @@ h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154
+	color: #1D6154;
 }
 nav ul {
 	display: flex;
@@ -95,7 +96,7 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
+li a:hover {
 	color: #B1663C;
 }
 #introduction {
@@ -137,6 +138,7 @@ li:hover {
 	width: 100%;
 
 }
+
 
 .filters{
 	display: flex;
@@ -211,5 +213,51 @@ footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
+}
+
+/* Mise en forme du formulaire de connexion */
+#login h2{
+	text-align: center;
+	margin-top: 120px;
+	margin-bottom: 40px;
+}
+
+.loginForm{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+}
+
+.loginForm label{
+font-family: "Work Sans", sans-serif;
+font-size: 0.875em;
+font-weight: 500;
+color: #000000;
+margin: 15px auto;
+}
+
+.loginForm input{
+	width: 380px;
+	height : 36px;
+	margin: 0 auto;
+	border: none;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.150);
+}
+
+.loginForm input[type="submit"]{
+	width: 179px;
+	height: 36px;
+	margin-top: 40px;
+	cursor: pointer;
+}
+
+.loginForm a{
+	font-family: "Work Sans", sans-serif;
+	font-size: 0.875em;
+	font-weight: 500;
+	color: #000000;
+	text-decoration: none;
+	margin: 30px auto 415px auto;
 }
 
