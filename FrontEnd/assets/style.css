@@ -245,7 +245,7 @@ margin: 15px auto;
 	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.150);
 }
 
-.loginForm input[type="submit"]{
+#btn-login{
 	width: 179px;
 	height: 36px;
 	margin-top: 40px;
