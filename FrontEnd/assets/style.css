@@ -348,7 +348,7 @@ footer nav ul {
 
 .editing-ico {
   color: #ffffff;
-  font-size: 16px;
+  font-size: 1em;
   margin-right: 10px;
 }
 
@@ -358,4 +358,36 @@ footer nav ul {
   font-weight: 400;
   color: #ffffff;
 }
-é&
+
+/*Mise en forme de la partie "modifier" dans la section "portfolio"*/
+.modal {
+  display: flex;
+  justify-content: center;
+  line-height: 30px;
+}
+
+.modal-ico {
+  font-size: 1em;
+  color: #000000;
+  padding-right: 10px;
+}
+
+.modal a {
+  width: 84px;
+  height: 16px;
+  text-decoration: none;
+  font-family: 'Work Sans';
+  font-size: 1em;
+  font-weight: 400;
+  color: #000000;
+  margin-left: 30px;
+}
+
+/*Classe spécifique pour l'affichage du mode édition */
+.display-off {
+  display: none;
+}
+
+.display-on {
+  display: flex;
+}
