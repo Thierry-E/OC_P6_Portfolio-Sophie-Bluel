@@ -344,6 +344,7 @@ footer nav ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  display: none;
 }
 
 .editing-ico {
@@ -372,7 +373,7 @@ footer nav ul {
   padding-right: 10px;
 }
 
-.modal a {
+.modal-link {
   width: 84px;
   height: 16px;
   text-decoration: none;
@@ -381,13 +382,9 @@ footer nav ul {
   font-weight: 400;
   color: #000000;
   margin-left: 30px;
-}
-
-/*Classe spécifique pour l'affichage du mode édition */
-.display-off {
   display: none;
 }
-
-.display-on {
-  display: flex;
+/* Réalisation du Lien logout */
+#logout {
+  display: none;
 }

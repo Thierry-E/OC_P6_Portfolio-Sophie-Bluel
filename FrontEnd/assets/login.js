@@ -74,3 +74,9 @@ if (inputSubmit) {
     login() // Appelle la fonction login lorsque le bouton est cliqué
   })
 }
+
+// //Vérification du token après chargement complet de la page
+// document.addEventListener('DOMContentLoaded', function () {
+//   const authToken = localStorage.getItem('authToken')
+//   verifyToken(authToken)
+// })

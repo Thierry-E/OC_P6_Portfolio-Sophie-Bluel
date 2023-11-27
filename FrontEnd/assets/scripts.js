@@ -11,6 +11,8 @@
 /******Variables Globales******/
 //Récupération de l'élément du DOM qui contiendra les projets
 const gallery = document.querySelector('.gallery')
+const token = localStorage.getItem('authToken')
+console.log('test local storage', token)
 
 // Récupération de l'élément du DOM qui contiendra les boutons
 const filters = document.querySelector('.filters')
@@ -67,7 +69,7 @@ async function getWorks() {
   return requete.json()
 }
 
-//Fonction qui crée les projets de façon individuels en fonction de la catégorie.
+// Fonction qui crée les projets de façon individuels en fonction de la catégorie.
 function createWork(work) {
   //Récupératiuon de l'élément du DOM qui contiendra les projets
   const gallery = document.querySelector('.gallery')
@@ -86,7 +88,63 @@ function createWork(work) {
   gallery.appendChild(figureElement)
 }
 
+// Affichage des éléments de modifications si token correct
+function verifyToken(token) {
+  const isTokenValid = token === localStorage.getItem('authToken')
+  const elementEditing = document.querySelector('.editing')
+  const elementModal = document.querySelector('.modal-link')
+  const loginLink = document.querySelector('#login')
+  const logoutLink = document.querySelector('#logout')
+  console.log('test des éléments', elementEditing, elementModal, login, logout)
+  if (!elementModal) {
+    console.error("L'élément modal-link n'a pas été trouvé dans le DOM.")
+  }
+
+  if (isTokenValid) {
+    console.log('Token valide, ajout de la classe display-on')
+    //Affichage des éléments du mode édition
+    elementEditing.style.display = 'flex'
+    elementModal.style.display = 'flex'
+    //Masque le lien login et affiche le lien logout
+    if (loginLink) loginLink.style.display = 'none'
+    if (logoutLink) logoutLink.style.display = 'block'
+  } else {
+    elementEditing.style.display = 'none'
+    elementModal.style.display = 'none'
+    // Masque le lien logout et affiche le lien login
+    if (loginLink) loginLink.style.display = 'block'
+    if (logoutLink) logoutLink.style.display = 'none'
+  }
+
+  return isTokenValid
+}
+
+//Permet la déconnexion de l'utilisateur
+function logoutUser() {
+  console.log('Déconnexion en cours...')
+  localStorage.removeItem('authToken')
+  localStorage.removeItem('userId')
+  console.log('Après suppression authToken:', localStorage.getItem('authToken'))
+
+  // Masquage des éléments du mode édition
+  const elementEditing = document.querySelector('.editing')
+  const elementModal = document.querySelector('.modal-link')
+
+  if (elementEditing) {
+    console.log('Masquer élément editing')
+    elementEditing.style.display = 'none'
+  }
+
+  if (elementModal) {
+    console.log('masquer élément modal-link')
+    elementModal.style.display = 'none'
+  }
+  console.log('Fin de la déconnexion')
+}
+
 /****** Gestionnaires d'événements******/
+
+//Réinitialisation de la gallerie via le bouton Tous.
 // Mise en place du filtrage des projets via les boutons.
 filters.addEventListener('click', function (event) {
   const idValue = event.target.id
@@ -109,8 +167,26 @@ filters.addEventListener('click', function (event) {
   }
 })
 
-//Réinitiamisation de la gallerie via le bouton Tous.
+//Récupération de l'élément du DOM pour le lien "logout"
+const logoutLink = document.getElementById('logout')
+if (logoutLink) {
+  logoutLink.addEventListener('click', function (event) {
+    console.log('clic sur logout')
+    event.preventDefault()
+    logoutUser()
+    verifyToken()
+  })
+}
 
+// // Vérification du token après chargement complet de la page
+// document.addEventListener('DOMContentLoaded', function () {
+//   const authToken = localStorage.getItem('authToken')
+//   console.log('vérification token', authToken)
+//   console.log('Avant verifiToken')
+//   verifyToken('authToken')
+//   console.log('Après verifyToken')
+// })
 /******Appel des Fonctions******/
 projectsRecovery()
 categories()
+verifyToken(token)
