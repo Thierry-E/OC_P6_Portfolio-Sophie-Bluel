@@ -92,7 +92,8 @@ function createWork(work) {
 function verifyToken() {
   const isTokenValid = localStorage.getItem('connected') === 'true'
   const elementEditing = document.querySelector('.editing')
-  const elementModal = document.querySelector('.modal-link')
+  const elementModal = document.querySelector('.modal')
+  const elementBtnFilters = document.querySelector('.filters')
   const loginLink = document.querySelector('#login')
   const logoutLink = document.querySelector('#logout')
   console.log('test des éléments', elementEditing, elementModal, login, logout)
@@ -109,12 +110,14 @@ function verifyToken() {
     //Masque le lien login et affiche le lien logout
     if (loginLink) loginLink.style.display = 'none'
     if (logoutLink) logoutLink.style.display = 'block'
+    if (elementBtnFilters) elementBtnFilters.style.visibility = 'hidden'
   } else {
     elementEditing.style.display = 'none'
     elementModal.style.display = 'none'
     // Masque le lien logout et affiche le lien login
     if (loginLink) loginLink.style.display = 'block'
     if (logoutLink) logoutLink.style.display = 'none'
+    if (elementBtnFilters) elementBtnFilters.style.visibility = 'visible'
   }
 
   return isTokenValid

@@ -381,7 +381,7 @@ footer nav ul {
   font-weight: 400;
   color: #000000;
   margin-left: 30px;
-  display: none;
+  /*display: none;*/
 }
 /* Réalisation du Lien logout */
 #logout {
