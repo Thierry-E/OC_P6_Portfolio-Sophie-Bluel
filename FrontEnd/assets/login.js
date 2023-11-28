@@ -50,6 +50,7 @@ function login() {
       const authToken = authUser.token
       localStorage.setItem('userId', userId)
       localStorage.setItem('authToken', authToken)
+      localStorage.setItem('connected', 'true')
 
       //Affichage des informations récupérées via la console.
       console.log('userId', userId)

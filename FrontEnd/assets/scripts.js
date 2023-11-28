@@ -89,8 +89,8 @@ function createWork(work) {
 }
 
 // Affichage des éléments de modifications si token correct
-function verifyToken(token) {
-  const isTokenValid = token === localStorage.getItem('authToken')
+function verifyToken() {
+  const isTokenValid = localStorage.getItem('connected') === 'true'
   const elementEditing = document.querySelector('.editing')
   const elementModal = document.querySelector('.modal-link')
   const loginLink = document.querySelector('#login')
@@ -100,6 +100,7 @@ function verifyToken(token) {
     console.error("L'élément modal-link n'a pas été trouvé dans le DOM.")
   }
 
+  console.log('valeur du token', isTokenValid)
   if (isTokenValid) {
     console.log('Token valide, ajout de la classe display-on')
     //Affichage des éléments du mode édition
@@ -124,6 +125,7 @@ function logoutUser() {
   console.log('Déconnexion en cours...')
   localStorage.removeItem('authToken')
   localStorage.removeItem('userId')
+  localStorage.removeItem('connected')
   console.log('Après suppression authToken:', localStorage.getItem('authToken'))
 
   // Masquage des éléments du mode édition
@@ -189,4 +191,4 @@ if (logoutLink) {
 /******Appel des Fonctions******/
 projectsRecovery()
 categories()
-verifyToken(token)
+verifyToken()
