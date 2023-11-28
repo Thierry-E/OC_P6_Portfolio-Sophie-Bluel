@@ -361,9 +361,11 @@ footer nav ul {
 
 /*Mise en forme de la partie "modifier" dans la section "portfolio"*/
 .modal {
-  display: none;
+  display: flex;
   justify-content: center;
-  line-height: 30px;
+  align-items: flex-start;
+  margin-left: 25px;
+  padding: 5px 10px;
 }
 
 .modal-ico {
@@ -380,8 +382,8 @@ footer nav ul {
   font-size: 1em;
   font-weight: 400;
   color: #000000;
-  margin-left: 30px;
-  /*display: none;*/
+  padding-left: 25px;
+  display: none;
 }
 /* Réalisation du Lien logout */
 #logout {

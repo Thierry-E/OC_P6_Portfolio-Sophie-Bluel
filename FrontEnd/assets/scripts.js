@@ -92,7 +92,7 @@ function createWork(work) {
 function verifyToken() {
   const isTokenValid = localStorage.getItem('connected') === 'true'
   const elementEditing = document.querySelector('.editing')
-  const elementModal = document.querySelector('.modal')
+  const elementModal = document.querySelector('.modal-link')
   const elementBtnFilters = document.querySelector('.filters')
   const loginLink = document.querySelector('#login')
   const logoutLink = document.querySelector('#logout')
