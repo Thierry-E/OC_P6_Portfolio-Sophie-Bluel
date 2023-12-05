@@ -397,6 +397,14 @@ footer nav ul {
   position: fixed;
   top: 0;
   left: 0;
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container.active {
+  visibility: visible;
 }
 
 .modal-overlay {
@@ -412,9 +420,6 @@ footer nav ul {
   background-color: #ffffff;
   border-radius: 10px;
   position: relative;
-  top: 8%;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
 }
@@ -465,7 +470,7 @@ footer nav ul {
 }
 
 .fa-trash-can {
-  width: 20px;
+  width: 22px;
   height: 18px;
   background-color: #000000;
   font-size: 0.938em;
@@ -474,8 +479,10 @@ footer nav ul {
   position: absolute;
   top: 5px;
   right: 5px;
-  padding-top: 3px;
+  padding-top: 4px;
   cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .modal-separate {

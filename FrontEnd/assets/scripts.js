@@ -208,6 +208,26 @@ if (logoutLink) {
   })
 }
 
+// Récupération de l'élément du DOM pour afficher la modale.
+const modalLink = document.querySelector('.btn-Modal-Link')
+modalLink.addEventListener('click', () => {
+  const modalContainer = document.querySelector('.modal-container')
+  modalContainer.classList.add('active')
+})
+
+// Récupération des éléments du DOM pour masquer la modale
+const modalOverlay = document.querySelector('.modal-overlay')
+const modalClose = document.querySelector('.modal-close')
+
+modalOverlay.addEventListener('click', () => {
+  const modalContainer = document.querySelector('.modal-container')
+  modalContainer.classList.remove('active')
+})
+
+modalClose.addEventListener('click', () => {
+  const modalContainer = document.querySelector('.modal-container')
+  modalContainer.classList.remove('active')
+})
 /******Appel des Fonctions******/
 projectsRecovery()
 categories()
