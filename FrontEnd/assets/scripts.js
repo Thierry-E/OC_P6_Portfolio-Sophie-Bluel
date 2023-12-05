@@ -92,7 +92,7 @@ function createWork(work) {
 function verifyToken() {
   const isTokenValid = localStorage.getItem('connected') === 'true'
   const elementEditing = document.querySelector('.editing')
-  const elementModal = document.querySelector('.modal-link')
+  const elementModal = document.querySelector('.btn-Modal-Link')
   const elementBtnFilters = document.querySelector('.filters')
   const loginLink = document.querySelector('#login')
   const logoutLink = document.querySelector('#logout')
@@ -147,6 +147,31 @@ function logoutUser() {
   console.log('Fin de la déconnexion')
 }
 
+async function displayProjectsInModal() {
+  const modalProjects = document.querySelector('.modal-gallery')
+  const projects = await getWorks()
+
+  projects.forEach((projects) => {
+    // Ajout d'une div pour contenir les miniatures et la corbeille.
+    const modalThumbnailsTrash = document.createElement('div')
+    modalThumbnailsTrash.classList.add('modal-thumbnails-trash')
+
+    const modalElementImg = document.createElement('img')
+    modalElementImg.src = projects.imageUrl
+    modalElementImg.classList.add('modal-thumbnails')
+
+    const modalTrash = document.createElement('i')
+    modalTrash.classList.add('fa-solid', 'fa-trash-can')
+
+    // Ajout des éléments dans la div "modalThumbnailsTrash"
+    modalThumbnailsTrash.appendChild(modalElementImg)
+    modalThumbnailsTrash.appendChild(modalTrash)
+
+    // Ajout de la div "modalThumbnailsTrash" à la galerie de la modale.
+    modalProjects.appendChild(modalThumbnailsTrash)
+  })
+}
+
 /****** Gestionnaires d'événements******/
 
 //Réinitialisation de la gallerie via le bouton Tous.
@@ -183,15 +208,8 @@ if (logoutLink) {
   })
 }
 
-// // Vérification du token après chargement complet de la page
-// document.addEventListener('DOMContentLoaded', function () {
-//   const authToken = localStorage.getItem('authToken')
-//   console.log('vérification token', authToken)
-//   console.log('Avant verifiToken')
-//   verifyToken('authToken')
-//   console.log('Après verifyToken')
-// })
 /******Appel des Fonctions******/
 projectsRecovery()
 categories()
 verifyToken()
+displayProjectsInModal()

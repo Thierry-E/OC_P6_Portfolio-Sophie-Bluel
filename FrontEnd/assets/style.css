@@ -359,8 +359,8 @@ footer nav ul {
   color: #ffffff;
 }
 
-/*Mise en forme de la partie "modifier" dans la section "portfolio"*/
-.modal {
+/*Mise en forme du lien "modifier" dans la section "portfolio"*/
+.link-Modal {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -374,7 +374,7 @@ footer nav ul {
   padding-right: 10px;
 }
 
-.modal-link {
+.btn-Modal-Link {
   width: 84px;
   height: 16px;
   text-decoration: none;
@@ -388,4 +388,113 @@ footer nav ul {
 /* Réalisation du Lien logout */
 #logout {
   display: none;
+}
+
+/*Mise en forme de la modale*/
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  width: 630px;
+  height: 670px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-close {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.modal-close i {
+  font-size: 1.5em;
+  display: grid;
+  place-items: center;
+}
+
+.modal-title {
+  font-family: 'Work sans';
+  font-size: 1.625em;
+  font-weight: 400;
+  text-align: center;
+  color: #000000;
+  margin-top: 60px;
+}
+
+.modal-gallery {
+  width: 80%;
+  height: 55%;
+  margin: 40px auto 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.modal-thumbnails-trash {
+  margin-right: auto;
+  position: relative;
+}
+
+.modal-thumbnails {
+  width: 80px;
+  height: 106px;
+}
+
+.fa-trash-can {
+  width: 20px;
+  height: 18px;
+  background-color: #000000;
+  font-size: 0.938em;
+  color: #ffffff;
+  text-align: center;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding-top: 3px;
+  cursor: pointer;
+}
+
+.modal-separate {
+  width: 80%;
+  height: 2px;
+  background-color: #b3b3b3;
+  margin: 50px auto;
+}
+
+.modal-btn {
+  width: 35%;
+  height: 36px;
+  border: none;
+  border-radius: 60px;
+  background-color: #1d6154;
+  font-family: 'Syne';
+  font-size: 0.875em;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 auto 45px auto;
+  cursor: pointer;
 }
