@@ -401,17 +401,31 @@ footer nav ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
 }
 
 .modal-container.active {
   visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 .modal-overlay {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 1s ease, opacity 0.3s ease;
+}
+
+.modal-container.active .modal-overlay {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Fondu en noir avec une opacité de 0.5 */
+  opacity: 1;
 }
 
 .modal {
@@ -420,8 +434,16 @@ footer nav ul {
   background-color: #ffffff;
   border-radius: 10px;
   position: relative;
+  top: -100%;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transition: top 1.4s ease, opacity 0.5s ease; /*Ajoutez une transition pour le mouvement et l'opacité */
+}
+
+.modal-container.active .modal {
+  top: 0; /* Position finale au centre de l'écran */
+  opacity: 1;
 }
 
 .modal-close {

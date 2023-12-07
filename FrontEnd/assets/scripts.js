@@ -163,6 +163,8 @@ async function displayProjectsInModal() {
     const modalTrash = document.createElement('i')
     modalTrash.classList.add('fa-solid', 'fa-trash-can')
 
+    modalTrash.id = projects.id
+
     // Ajout des éléments dans la div "modalThumbnailsTrash"
     modalThumbnailsTrash.appendChild(modalElementImg)
     modalThumbnailsTrash.appendChild(modalTrash)
@@ -170,6 +172,20 @@ async function displayProjectsInModal() {
     // Ajout de la div "modalThumbnailsTrash" à la galerie de la modale.
     modalProjects.appendChild(modalThumbnailsTrash)
   })
+  deleteTrash()
+}
+
+async function deleteProject(projectId) {
+  const urlDelete = `http://localhost:5678/api/works/${projectId}`
+  const response = await fetch(urlDelete, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+  console.log(response)
+  console.log(token)
 }
 
 /****** Gestionnaires d'événements******/
@@ -228,6 +244,23 @@ modalClose.addEventListener('click', () => {
   const modalContainer = document.querySelector('.modal-container')
   modalContainer.classList.remove('active')
 })
+
+// Ajout d'un écouteur d'événement à la corbeille
+
+function deleteTrash() {
+  const modalTrash = document.querySelectorAll('.fa-trash-can')
+  const modalTrashArray = Array.from(modalTrash)
+  console.log('test corbeilles 1', modalTrashArray)
+
+  modalTrash.forEach((modalTrash) => {
+    modalTrash.addEventListener('click', () => {
+      console.log(' je clique sur la poubelle')
+      deleteProject(modalTrash.id)
+      console.log('id des corbeilles', modalTrash.id)
+    })
+  })
+}
+
 /******Appel des Fonctions******/
 projectsRecovery()
 categories()
