@@ -184,8 +184,25 @@ async function deleteProject(projectId) {
       'Content-Type': 'application/json',
     },
   })
-  console.log(response)
+  console.log('deleteResponse', response)
   console.log(token)
+
+  if (response.ok) {
+    console.log('Projet supprimé avec succès')
+    // Mise à jour de la galerie
+    gallery.innerHTML = ' '
+    await projectsRecovery()
+
+    // mise à jour de la modale
+    const modalProjects = document.querySelector('.modal-gallery')
+    modalProjects.innerHTML = ' '
+    await displayProjectsInModal()
+
+    // Ajout a nouveau de l'écouteur d'événement sur les corbeilles
+    deleteTrash()
+  } else {
+    console.log('Erreur lors de la suppression du projet')
+  }
 }
 
 /****** Gestionnaires d'événements******/
@@ -254,7 +271,7 @@ function deleteTrash() {
 
   modalTrash.forEach((modalTrash) => {
     modalTrash.addEventListener('click', () => {
-      console.log(' je clique sur la poubelle')
+      console.log(' je clique sur la corbeille')
       deleteProject(modalTrash.id)
       console.log('id des corbeilles', modalTrash.id)
     })
