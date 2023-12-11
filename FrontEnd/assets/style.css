@@ -527,3 +527,151 @@ footer nav ul {
   margin: 0 auto 45px auto;
   cursor: pointer;
 }
+
+.modalPictures {
+  width: 630px;
+  height: 670px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 10px;
+}
+
+.modalPictures-close {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.modalPictures-close i {
+  font-size: 1.5em;
+  display: grid;
+  place-items: center;
+}
+
+.modalPictures-arrow {
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.modalPictures-arrow i {
+  font-size: 1.4em;
+  display: grid;
+  place-items: center;
+}
+
+.modalPictures-title {
+  font-family: 'Work sans';
+  font-size: 1.625em;
+  font-weight: 400;
+  text-align: center;
+  color: #000000;
+  margin-top: 60px;
+}
+
+.modalPictures-box {
+  width: 420px;
+  height: 170px;
+  background-color: #e8f1f6;
+  margin: 40px auto 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modalPictures-box i {
+  font-size: 60px;
+  color: #b9c5cc;
+  padding-top: 14px;
+}
+
+#modalPictures-label {
+  width: 175px;
+  height: 36px;
+  background-color: #c8d6dc;
+  border-radius: 50px;
+  display: grid;
+  place-items: center;
+  margin-top: 14px;
+  font-family: 'Work Sans';
+  font-size: 1em;
+  font-weight: 500;
+  color: #306685;
+  text-align: center;
+  cursor: pointer;
+}
+
+#modalPictures-label #uploadInput {
+  display: none;
+}
+
+.modalPictures-text {
+  font-family: 'Work Sans';
+  font-size: 0.78em;
+  font-weight: 400;
+  color: #444;
+  margin-top: 7px;
+}
+
+.modalPictures-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+#title-form,
+#categorie-form {
+  font-family: 'Work Sans';
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #000000;
+}
+
+#title-form {
+  margin-left: -390px;
+}
+
+#categorie-form {
+  margin-left: -350px;
+}
+
+#form-title,
+#categorie-select {
+  width: 420px;
+  height: 51px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  font-size: 1.1em;
+  border: none;
+}
+
+.modalPictures-btn {
+  width: 35%;
+  height: 36px;
+  border: none;
+  border-radius: 60px;
+  background-color: #a7a7a7;
+  font-family: 'Syne';
+  font-size: 0.875em;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 auto 45px auto;
+  cursor: pointer;
+}
+
+.modalPictures-btn:hover {
+  background-color: #1d6154;
+}
