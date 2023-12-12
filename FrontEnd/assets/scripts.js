@@ -205,6 +205,22 @@ async function deleteProject(projectId) {
   }
 }
 
+// Ajout d'un écouteur d'événement à la corbeille
+
+function deleteTrash() {
+  const modalTrash = document.querySelectorAll('.fa-trash-can')
+  const modalTrashArray = Array.from(modalTrash)
+  console.log('test corbeilles 1', modalTrashArray)
+
+  modalTrash.forEach((modalTrash) => {
+    modalTrash.addEventListener('click', () => {
+      console.log(' je clique sur la corbeille')
+      deleteProject(modalTrash.id)
+      console.log('id des corbeilles', modalTrash.id)
+    })
+  })
+}
+
 /****** Gestionnaires d'événements******/
 
 //Réinitialisation de la gallerie via le bouton Tous.
@@ -241,14 +257,14 @@ if (logoutLink) {
   })
 }
 
-// Récupération de l'élément du DOM pour afficher la modale.
+// Récupération de l'élément du DOM pour afficher la première modale.
 const modalLink = document.querySelector('.btn-Modal-Link')
 modalLink.addEventListener('click', () => {
   const modalContainer = document.querySelector('.modal-container')
   modalContainer.classList.add('active')
 })
 
-// Récupération des éléments du DOM pour masquer la modale
+// Récupération des éléments du DOM pour masquer la première modale
 const modalOverlay = document.querySelector('.modal-overlay')
 const modalClose = document.querySelector('.modal-close')
 
@@ -262,21 +278,29 @@ modalClose.addEventListener('click', () => {
   modalContainer.classList.remove('active')
 })
 
-// Ajout d'un écouteur d'événement à la corbeille
+// Récupération de l'élément du DOM pour afficher la seconde modale.
+const modalBtn = document.querySelector('.modal-btn')
+modalBtn.addEventListener('click', () => {
+  const modalPictures = document.querySelector('.modalPictures')
+  modalPictures.style.display = 'flex'
+})
 
-function deleteTrash() {
-  const modalTrash = document.querySelectorAll('.fa-trash-can')
-  const modalTrashArray = Array.from(modalTrash)
-  console.log('test corbeilles 1', modalTrashArray)
+// Récupération des éléments du DOm pour masquer la seconde modale.
+const modalPicturesClose = document.querySelector('.modalPictures-close')
+modalPicturesClose.addEventListener('click', () => {
+  const modalPictures = document.querySelector('.modalPictures')
+  modalPictures.style.display = 'none'
 
-  modalTrash.forEach((modalTrash) => {
-    modalTrash.addEventListener('click', () => {
-      console.log(' je clique sur la corbeille')
-      deleteProject(modalTrash.id)
-      console.log('id des corbeilles', modalTrash.id)
-    })
-  })
-}
+  const modalContainer = document.querySelector('.modal-container')
+  modalContainer.classList.remove('active')
+})
+
+// // Récupération de l'élément flèche de la seconde modale pour faire un retour sur la première modale.
+const arrow = document.querySelector('.modalPictures-arrow')
+arrow.addEventListener('click', () => {
+  const modalPictures = document.querySelector('.modalPictures')
+  modalPictures.style.display = 'none'
+})
 
 /******Appel des Fonctions******/
 projectsRecovery()
