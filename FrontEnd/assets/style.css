@@ -589,6 +589,7 @@ footer nav ul {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  margin-top: 18px;
 }
 
 .modalPictures-box i {
@@ -602,14 +603,13 @@ footer nav ul {
   height: 36px;
   background-color: #c8d6dc;
   border-radius: 50px;
-  display: grid;
-  place-items: center;
   margin-top: 14px;
   font-family: 'Work Sans';
   font-size: 1em;
   font-weight: 500;
   color: #306685;
   text-align: center;
+  line-height: 34px;
   cursor: pointer;
 }
 
@@ -676,4 +676,11 @@ footer nav ul {
 
 .modalPictures-btn:hover {
   background-color: #1d6154;
+}
+
+/*Style de l'image prévisualiser*/
+#img-preview {
+  width: 129px;
+  height: 193px;
+  display: none;
 }

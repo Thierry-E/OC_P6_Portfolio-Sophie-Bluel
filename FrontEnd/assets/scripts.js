@@ -13,6 +13,7 @@
 const gallery = document.querySelector('.gallery')
 const token = localStorage.getItem('authToken')
 console.log('test local storage', token)
+const imgPreview = document.querySelector('#img-preview')
 
 // Récupération de l'élément du DOM qui contiendra les boutons
 const filters = document.querySelector('.filters')
@@ -205,7 +206,7 @@ async function deleteProject(projectId) {
   }
 }
 
-// Ajout d'un écouteur d'événement à la corbeille
+// fonction qui ajoute un écouteur d'événement à la corbeille
 
 function deleteTrash() {
   const modalTrash = document.querySelectorAll('.fa-trash-can')
@@ -219,6 +220,57 @@ function deleteTrash() {
       console.log('id des corbeilles', modalTrash.id)
     })
   })
+}
+
+// // Fonction pour la prévisualisation du projet ajouté
+function previewPicture(event) {
+  //Vérification pour savoir si des fichiers ont étaient séléctionnés
+  if (event.target.files && event.target.files[0]) {
+    // L'objet filereader
+    const reader = new FileReader()
+    //déclenchement de l'événement lorsque la lecture est complète
+    reader.onload = function (event) {
+      //Changement de l'url de l'image dans l'élément d'aperçu
+      imgPreview.src = event.target.result
+
+      // Centrer et afficher l'image de prévisualisation dans modalPictures-box
+      imgPreview.style.display = 'block'
+      imgPreview.style.margin = 'auto'
+
+      // Masquer les autres éléments
+      const faImage = document.querySelector('.fa-image')
+      const modalPicturesLabel = document.querySelector('#modalPictures-label')
+      const uploadInput = document.querySelector('#uploadInput')
+      const modalPicturesText = document.querySelector('.modalpictures-text')
+
+      if (faImage) faImage.style.display = 'none'
+      if (modalPicturesLabel) modalPicturesLabel.style.display = 'none'
+      if (uploadInput) uploadInput.style.display = 'none'
+      if (modalPicturesText) modalPicturesText.style.display = 'none'
+
+      // Ajouter un gestionnaire d'événement clic à l'image pour la supprimer
+      imgPreview.addEventListener('click', function () {
+        // Réinitialiser l'élément d'aperçu
+        imgPreview.src = ''
+        imgPreview.style.display = 'none'
+
+        // Effacer la valeur de l'entrée de fichier
+        if (uploadInput) {
+          uploadInput.value = ''
+        }
+
+        // Afficher à nouveau les éléments masqués
+        if (faImage) faImage.style.display = 'block'
+        if (modalPicturesLabel) modalPicturesLabel.style.display = 'block'
+        if (modalPicturesText) modalPicturesText.style.display = 'block'
+
+        // Supprimer le gestionnaire d'événement clic de l'image
+        imgPreview.removeEventListener('click', clickToRemove)
+      })
+    }
+    //Lecture du fichier d'image séléctionné
+    reader.readAsDataURL(event.target.files[0])
+  }
 }
 
 /****** Gestionnaires d'événements******/
@@ -295,12 +347,16 @@ modalPicturesClose.addEventListener('click', () => {
   modalContainer.classList.remove('active')
 })
 
-// // Récupération de l'élément flèche de la seconde modale pour faire un retour sur la première modale.
+// Récupération de l'élément flèche de la seconde modale pour faire un retour sur la première modale.
 const arrow = document.querySelector('.modalPictures-arrow')
 arrow.addEventListener('click', () => {
   const modalPictures = document.querySelector('.modalPictures')
   modalPictures.style.display = 'none'
 })
+
+// Récupération de l'élément d'entrée de fichier (input type="file")
+const fileInput = document.querySelector('#uploadInput')
+fileInput.addEventListener('change', previewPicture)
 
 /******Appel des Fonctions******/
 projectsRecovery()
