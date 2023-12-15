@@ -521,7 +521,7 @@ footer nav ul {
   border-radius: 60px;
   background-color: #1d6154;
   font-family: 'Syne';
-  font-size: 0.875em;
+  font-size: 1.3em;
   font-weight: 700;
   color: #ffffff;
   margin: 0 auto 45px auto;
@@ -534,11 +534,12 @@ footer nav ul {
   background-color: #ffffff;
   border-radius: 10px;
   position: fixed;
-  top: 14%;
-  left: 33.37%;
+  top: 50%;
+  left: 50%;
+  margin-top: -335px;
+  margin-left: -307px;
   display: none;
   flex-direction: column;
-  margin-left: 10px;
 }
 
 .modalPictures-close {
@@ -589,7 +590,7 @@ footer nav ul {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  margin-top: 18px;
+  margin-top: 30px;
 }
 
 .modalPictures-box i {
@@ -662,15 +663,15 @@ footer nav ul {
 
 .modalPictures-btn {
   width: 35%;
-  height: 40px;
+  height: 36px;
   border: none;
   border-radius: 60px;
   background-color: #a7a7a7;
   font-family: 'Syne';
-  font-size: 0.938em;
+  font-size: 1.3em;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 auto 45px auto;
+  margin: 0 auto;
   cursor: pointer;
 }
 

@@ -238,6 +238,7 @@ function previewPicture(event) {
       imgPreview.style.margin = 'auto'
 
       // Masquer les autres éléments
+      const modalFirst = document.querySelector('.modal')
       const faImage = document.querySelector('.fa-image')
       const modalPicturesLabel = document.querySelector('#modalPictures-label')
       const uploadInput = document.querySelector('#uploadInput')
@@ -272,6 +273,26 @@ function previewPicture(event) {
     reader.readAsDataURL(event.target.files[0])
   }
 }
+
+// Assignation de l'id correspondant à la catégorie des projets au champ option de la liste déroulante de la seconde modale..
+async function categoriesModales() {
+  // Récupération des catégories depuis l'API
+  const url = 'http://localhost:5678/api/categories'
+  fetch(url)
+    .then((resp) => resp.json())
+    .then((categories) => {
+      const elementSelect = document.querySelector('#categorie-select')
+
+      // Création d'une option par catégorie
+      categories.forEach((category) => {
+        const optionElement = document.createElement('option')
+        optionElement.value = category.id
+        optionElement.text = category.name
+        elementSelect.appendChild(optionElement)
+      })
+    })
+}
+categoriesModales()
 
 /****** Gestionnaires d'événements******/
 
