@@ -482,7 +482,6 @@ footer nav ul {
   position: relative;
 }
 .modal-thumbnails-trash {
-  margin-right: auto;
   position: relative;
 }
 
@@ -511,7 +510,7 @@ footer nav ul {
   width: 80%;
   height: 2px;
   background-color: #b3b3b3;
-  margin: 50px auto;
+  margin: 60px auto;
 }
 
 .modal-btn {
@@ -614,8 +613,8 @@ footer nav ul {
   cursor: pointer;
 }
 
-#modalPictures-label #uploadInput {
-  display: none;
+#uploadInput {
+  opacity: 0;
 }
 
 .modalPictures-text {
@@ -632,7 +631,6 @@ footer nav ul {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  margin-top: 30px;
 }
 
 #title-form,
@@ -661,7 +659,7 @@ footer nav ul {
   border: none;
 }
 
-.modalPictures-btn {
+#modalPictures-sub {
   width: 35%;
   height: 36px;
   border: none;
@@ -671,12 +669,29 @@ footer nav ul {
   font-size: 1.3em;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
   cursor: pointer;
 }
 
-.modalPictures-btn:hover {
+.modal-separateTwo {
+  width: 80%;
+  height: 2px;
+  background-color: #b3b3b3;
+  margin: 30px auto;
+}
+
+#modalPictures-validate {
+  width: 35%;
+  height: 36px;
+  border: none;
+  border-radius: 60px;
   background-color: #1d6154;
+  font-family: 'Syne';
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 auto 20px auto;
+  cursor: pointer;
 }
 
 /*Style de l'image prévisualiser*/

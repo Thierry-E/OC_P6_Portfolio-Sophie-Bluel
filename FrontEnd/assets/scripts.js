@@ -14,6 +14,8 @@ const gallery = document.querySelector('.gallery')
 const token = localStorage.getItem('authToken')
 console.log('test local storage', token)
 const imgPreview = document.querySelector('#img-preview')
+const modalProjects = document.querySelector('.modal-gallery')
+const form = document.querySelector('.modalPictures-form')
 
 // Récupération de l'élément du DOM qui contiendra les boutons
 const filters = document.querySelector('.filters')
@@ -22,6 +24,7 @@ const filters = document.querySelector('.filters')
 
 // Récupération des projets depuis l'API et affichage de ces derniers sans filtrage.
 async function projectsRecovery() {
+  gallery.innerHTML = ''
   const url = 'http://localhost:5678/api/works'
   fetch(url)
     .then((resp) => resp.json())
@@ -148,8 +151,9 @@ function logoutUser() {
   console.log('Fin de la déconnexion')
 }
 
+//Fonction permettant l'ajout des projets à la modale sous forme de miniatures.
 async function displayProjectsInModal() {
-  const modalProjects = document.querySelector('.modal-gallery')
+  modalProjects.innerHTML = ''
   const projects = await getWorks()
 
   projects.forEach((projects) => {
@@ -195,12 +199,8 @@ async function deleteProject(projectId) {
     await projectsRecovery()
 
     // mise à jour de la modale
-    const modalProjects = document.querySelector('.modal-gallery')
-    modalProjects.innerHTML = ' '
+    modalProjects.innerHTML = ''
     await displayProjectsInModal()
-
-    // Ajout a nouveau de l'écouteur d'événement sur les corbeilles
-    deleteTrash()
   } else {
     console.log('Erreur lors de la suppression du projet')
   }
@@ -245,8 +245,7 @@ function previewPicture(event) {
       const modalPicturesText = document.querySelector('.modalpictures-text')
 
       if (faImage) faImage.style.display = 'none'
-      if (modalPicturesLabel) modalPicturesLabel.style.display = 'none'
-      if (uploadInput) uploadInput.style.display = 'none'
+      if (modalPicturesLabel) modalPicturesLabel.style.opacity = '0'
       if (modalPicturesText) modalPicturesText.style.display = 'none'
 
       // Ajouter un gestionnaire d'événement clic à l'image pour la supprimer
@@ -262,7 +261,7 @@ function previewPicture(event) {
 
         // Afficher à nouveau les éléments masqués
         if (faImage) faImage.style.display = 'block'
-        if (modalPicturesLabel) modalPicturesLabel.style.display = 'block'
+        if (modalPicturesLabel) modalPicturesLabel.style.opacity = '1'
         if (modalPicturesText) modalPicturesText.style.display = 'block'
 
         // Supprimer le gestionnaire d'événement clic de l'image
@@ -292,8 +291,68 @@ async function categoriesModales() {
       })
     })
 }
-categoriesModales()
 
+// Fonction permettant l'ajout de projet
+async function addProject() {
+  const elementTitle = document.querySelector('#form-title').value
+  const elementCategory = document.querySelector('#categorie-select').value
+  const elementFile = document.querySelector('#uploadInput').files[0]
+  console.log(
+    'récupérations des valeurs des champs :',
+    elementTitle,
+    elementCategory,
+    elementFile
+  )
+
+  const formData = new FormData()
+  formData.append('title', elementTitle)
+  formData.append('category', elementCategory)
+  formData.append('image', elementFile)
+
+  try {
+    const response = await fetch('http://localhost:5678/api/works', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      console.log('Projet ajouté avec succès', data)
+      projectsRecovery()
+      displayProjectsInModal()
+    } else {
+      console.error(
+        "Échec de l'ajout du projet. Statut HTTP :",
+        response.status
+      )
+      // Afficher le message d'erreur si disponible
+      const errorData = await response.json().catch(() => null)
+      if (errorData) {
+        console.error("Message d'erreur :", errorData.message || errorData)
+      }
+    }
+  } catch (error) {
+    console.error("Erreur lors de l'envoi de la requête :", error)
+  }
+}
+
+function btnValidateProject() {
+  console.log('je rentre dans la fonction')
+  const btnValidate = document.querySelector('#modalPictures-sub')
+  const elementTitle = document.querySelector('#form-title')
+  const elementFile = document.querySelector('#uploadInput')
+  console.log('voilà mes éléments :', btnValidate, elementTitle, elementFile)
+
+  // Vérifier si les éléments sont définis
+  // Condition pour changer la couleur en fonction des conditions souhaitées
+  if (elementFile.value !== '' && elementTitle.value !== '') {
+    console.log(' changement btn valider')
+    btnValidate.id = 'modalPictures-validate' // Changer la couleur en vert
+  }
+}
 /****** Gestionnaires d'événements******/
 
 //Réinitialisation de la gallerie via le bouton Tous.
@@ -379,8 +438,25 @@ arrow.addEventListener('click', () => {
 const fileInput = document.querySelector('#uploadInput')
 fileInput.addEventListener('change', previewPicture)
 
+// Gestionnaire d'événement pour l'ajout d'un projet
+console.log('test de form :', form)
+form.addEventListener('submit', (event) => {
+  event.preventDefault()
+  console.log('submit ok')
+  addProject()
+})
+
+// Ecouter d'événement sur les différents champs du formualire avnt validation
+
+// Gestionnaire d'événement pour l'ajout d'un projet
+form.addEventListener('input', () => {
+  console.log('input valider')
+  btnValidateProject()
+})
+
 /******Appel des Fonctions******/
 projectsRecovery()
 categories()
 verifyToken()
 displayProjectsInModal()
+categoriesModales()
