@@ -680,20 +680,6 @@ footer nav ul {
   margin: 30px auto;
 }
 
-#modalPictures-validate {
-  width: 35%;
-  height: 36px;
-  border: none;
-  border-radius: 60px;
-  background-color: #1d6154;
-  font-family: 'Syne';
-  font-size: 1.3em;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 auto 20px auto;
-  cursor: pointer;
-}
-
 /*Style de l'image prévisualiser*/
 #img-preview {
   width: 129px;

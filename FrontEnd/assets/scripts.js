@@ -346,13 +346,22 @@ function btnValidateProject() {
   const elementFile = document.querySelector('#uploadInput')
   console.log('voilà mes éléments :', btnValidate, elementTitle, elementFile)
 
+  // Réinitialiser la couleur à chaque appel de la fonction
+  btnValidate.style.backgroundColor = '#b3b3b3'
+
   // Vérifier si les éléments sont définis
   // Condition pour changer la couleur en fonction des conditions souhaitées
-  if (elementFile.value !== '' && elementTitle.value !== '') {
-    console.log(' changement btn valider')
-    btnValidate.id = 'modalPictures-validate' // Changer la couleur en vert
+  if (
+    elementTitle.value !== '' &&
+    (elementFile.files.length > 0 || elementFile.value !== '')
+  ) {
+    console.log('changement btn valider')
+    btnValidate.style.backgroundColor = '#1d6154' // Changer la couleur en vert
+  } else {
+    btnValidate.style.backgroundColor = '#b3b3b3'
   }
 }
+
 /****** Gestionnaires d'événements******/
 
 //Réinitialisation de la gallerie via le bouton Tous.
